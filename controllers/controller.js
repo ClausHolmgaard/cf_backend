@@ -29,7 +29,7 @@ exports.workouts = async (req, res) => {
 
     axios.get(workoutUrl.toString())
         .then(response => {
-            console.log(JSON.stringify(response.data));
+            //console.log(JSON.stringify(response.data));
             res.json(response.data);
         })
         .catch(error => {
