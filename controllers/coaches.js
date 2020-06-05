@@ -7,7 +7,7 @@ exports.coaches = async (req, res) => {
 
     const coachUrl = new URL(`${baseUrl}/athletes`);
     coachUrl.searchParams.append('apiKey', process.env.SUGARWOD_API_KEY);
-    coachUrl.searchParams.append('role', 'coach');
+    coachUrl.searchParams.append('role', 'coaches');
 
     console.log(`Processing coaches request from ${req.hostname}`);
 
