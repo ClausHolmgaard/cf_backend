@@ -4,6 +4,11 @@ module.exports = (app) => {
     const coaches = require('../controllers/coaches');
 
     app.get('/info', info.info);
+    app.post('/info', info.postInfo);
+    app.put('/info', info.putInfo);
+    app.delete('/info', info.deleteInfo);
+
+
     app.get('/workouts', workouts.workouts);
     app.get('/coaches', coaches.coaches);
 }

@@ -1,1 +1,3 @@
 Move base url to a more general place
+
+On delete: add check for existance

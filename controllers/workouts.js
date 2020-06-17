@@ -13,8 +13,7 @@ exports.workouts = async (req, res) => {
 
     if(dates === undefined || track_id === undefined) {
         console.log('dates or track_id not defined');
-        res.status(400)
-        res.send('Both date and track_id parameters must be defined');
+        res.status(400).send('Both date and track_id parameters must be defined');
         return;
     }
 
@@ -33,7 +32,6 @@ exports.workouts = async (req, res) => {
         .catch(error => {
             console.log('Error Found:');
             console.log(error);
-            res.status(500);
-            res.send('Something went wrong');
+            res.status(500).send('Something went wrong');
         })
 }
