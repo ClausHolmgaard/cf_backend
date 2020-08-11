@@ -11,6 +11,11 @@ exports.workouts = async (req, res) => {
     //console.log(`dates: ${dates}`);
     //console.log(`track_id: ${track_id}`);
 
+    // Get all tracks
+    // Get all workouts for all tracks for given date
+    // Format in json
+    // send reply
+
     if(dates === undefined || track_id === undefined) {
         console.log('dates or track_id not defined');
         res.status(400).send('Both date and track_id parameters must be defined');
