@@ -8,7 +8,9 @@ module.exports = (app) => {
     app.put('/info', info.putInfo);
     app.delete('/info', info.deleteInfo);
 
-
-    app.get('/workouts', workouts.workouts);
     app.get('/coaches', coaches.coaches);
+    app.put('/coaches', coaches.coachesPut);
+    
+    app.get('/workouts', workouts.workouts);
+
 }

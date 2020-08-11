@@ -7,7 +7,7 @@ require('dotenv').config();
 exports.info = async (req, res) => {
     console.log(`Info get request from ${req.hostname}`);
 
-    const infoUrl = 'http://127.0.0.1:3400/info';
+    const infoUrl = process.env.DATABASE_IP + '/info';
     const id = req.query.id;
 
     if(id === undefined) {
@@ -38,7 +38,7 @@ exports.postInfo = async (req, res) => {
     const infoText = req.body['Text'];
     const newInfoUuid = uuid.generate();
 
-    axios.post('http://localhost:3400/info', {
+    axios.post(process.env.DATABASE_IP + '/info', {
         id: newInfoUuid,
         Text: infoText === undefined ? '' : infoText
     })
@@ -54,7 +54,7 @@ exports.postInfo = async (req, res) => {
 
 // Update an existing info entry
 exports.putInfo = (req, res) => {
-    const infoUrl = 'http://127.0.0.1:3400/info';
+    const infoUrl = process.env.DATABASE_IP + '/info';
     const id = req.query.id;
     const infoText = req.body['Text'];
 
@@ -82,7 +82,7 @@ exports.putInfo = (req, res) => {
 exports.deleteInfo = (req, res) => {
     console.log(`Info delete request from ${req.hostname}`);
 
-    const infoUrl = 'http://127.0.0.1:3400/info';
+    const infoUrl = process.env.DATABASE_IP + '/info';
     const id = req.query.id;
 
     if(id === undefined) {
