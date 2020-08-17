@@ -16,9 +16,9 @@ exports.info = async (req, res) => {
                 res.status(200).json(response.data);
             })
             .catch(error => {
-                console.log('Error Found:');
-                console.log(error);
-                res.status(500).send('Something went wrong');
+                console.log('Error when processing info request:');
+                //console.log(error);
+                res.status(500).send(['Something went wrong']);
             })
     } else {
         axios.get(`${infoUrl}/${id}`)

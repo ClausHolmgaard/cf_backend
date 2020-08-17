@@ -43,8 +43,8 @@ exports.coaches = async (req, res) => {
             return res.json(responseDone);
         })
         .catch(error => {
-            console.log('Error Found:');
-            console.log(error);
+            console.log('Error when processing coaches request:');
+            //console.log(error);
             res.status(500);
             res.send('Something went wrong');
         })
@@ -96,7 +96,7 @@ exports.coachesPut = async (req, res) => {
         })
         .catch(error => {
             console.log('Error during posting of info entry:');
-            console.log(error);
+            //console.log(error);
             res.status(500).send('Something went wrong');
         })
 }

@@ -24,8 +24,8 @@ exports.workouts = async (req, res) => {
             res.json(response.data);
         })
         .catch(error => {
-            console.log('Error Found:');
-            console.log(error);
+            console.log('Error processing workouts request:');
+            //console.log(error);
             res.status(500).send('Something went wrong');
         })
 }
