@@ -5,33 +5,22 @@ const baseUrl = 'https://api.sugarwod.com/v2/';
 
 exports.workouts = async (req, res) => {
 
+    console.log(`Processing workouts request from ${req.hostname}`);
+
     const dates = req.query.dates;
     const track_id = req.query.track_id;
 
-    //console.log(`dates: ${dates}`);
-    //console.log(`track_id: ${track_id}`);
-
-    // Get all tracks
-    // Get all workouts for all tracks for given date
-    // Format in json
-    // send reply
-
-    if(dates === undefined || track_id === undefined) {
-        console.log('dates or track_id not defined');
-        res.status(400).send('Both date and track_id parameters must be defined');
-        return;
-    }
-
     const workoutUrl = new URL(`${baseUrl}/workouts`);
     workoutUrl.searchParams.append('apiKey', process.env.SUGARWOD_API_KEY);
-    workoutUrl.searchParams.append('dates', dates);
-    workoutUrl.searchParams.append('track_id', track_id);
-
-    console.log(`Processing workouts request from ${req.hostname}`);
+    if(!dates === undefined) {
+        workoutUrl.searchParams.append('dates', dates);
+    }
+    if(!track_id === undefined) {
+        workoutUrl.searchParams.append('track_id', track_id);
+    }
 
     axios.get(workoutUrl.toString())
         .then(response => {
-            //console.log(JSON.stringify(response.data));
             res.json(response.data);
         })
         .catch(error => {
