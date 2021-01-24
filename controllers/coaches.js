@@ -72,6 +72,7 @@ const getCoachInfo = async (coachId) => {
         })
         .catch(error => {
             console.log('Error getting coach info for id: ' + coachId);
+            console.log('\tRequest: ' + `${coachUrl}/${coachId}`)
         })
 
     return await info;
