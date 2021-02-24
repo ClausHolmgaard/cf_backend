@@ -1,1 +1,4 @@
 json-server --watch db.json --port 3400
+
+nodemon.cmd server.js
+
