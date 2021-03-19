@@ -33,7 +33,7 @@ exports.coaches = async (req, res) => {
 
             const newResponse = response.data['data'].map(async (x) => {
                 const info = await getCoachInfo(x['id']);
-                x['Text'] = info;
+                x['data'] = info;
                 return x;
             })
 
@@ -68,7 +68,12 @@ const getCoachInfo = async (coachId) => {
     const info = axios.get(`${coachUrl}/${coachId}`)
         .then(response => {
             //console.log('info for ' + coachId + ': ' + response.data["Text"]);
-            return response.data['Text'] === undefined ? '' : response.data['Text'];
+            const resp = {
+                Text: response.data['Text'] === undefined ? '' : response.data['Text'],
+                Show: response.data['Show'] === undefined ? true : response.data['Show']
+            }
+
+            return resp;
         })
         .catch(error => {
             console.log('Error getting coach info for id: ' + coachId);
@@ -83,6 +88,7 @@ const getCoachInfo = async (coachId) => {
 exports.coachesPut = async (req, res) => {
     const id = req.query.id;
     const coachText = req.body['Text'];
+    const coachShow = req.body['Show'];
 
     if(id === undefined) {
         res.status(400).send('No id defined');
@@ -90,7 +96,8 @@ exports.coachesPut = async (req, res) => {
     }
 
     axios.put(`${coachUrl}/${id}`, {
-        Text: coachText === undefined ? '' : coachText
+        Text: coachText === undefined ? '' : coachText,
+        Show: coachShow === undefined ? true : coachShow
     })
         .then(response => {
             res.status(response.status).send('Success');
